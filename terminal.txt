@@ -1,1 +1,10 @@
+# Run broker in the background and then subscribe with all other attributes
+
 mosquitto -c /etc/mosquitto/conf.d/broker1.conf -d && mosquitto_sub -h 127.0.0.1 -p 1221 --cafile /etc/mosquitto/certs/certificate.pem -t "test" -q 2 -W 20 --will-topic "test" --will-payload "Not connected at the moment" --will-qos 1
+
+
+# Register ssl with generic information, also register using sample information 
+
+openssl x509 -in certificate.pem -subject -noout
+
+#subject=C = RW, ST = Kigali, L = Kigali city, O = RwandaIhutelink, OU = Departement of IT, CN = 127.0.0.1, emailAddress = admin@127.0.0.1
